@@ -1,0 +1,19 @@
+ Software engineering is the systematic application of engineering approaches to the development of software. It involves requirements gathering, system design, implementation, testing, deployment, and maintenance.
+
+Agile methodology is a popular software development approach focused on iterative development, collaboration, and customer feedback.
+
+DevOps is a combination of development and operations. It emphasizes automation, continuous integration, and continuous delivery.
+
+Microservices architecture is a design approach where a large application is composed of small, loosely coupled services that communicate over APIs.
+
+Artificial Intelligence (AI) and Machine Learning (ML) are current trends in software engineering that enable systems to learn and make decisions from data.
+
+Cloud computing allows developers to deploy applications on remote servers, providing scalability and reliability.
+
+Version control systems like Git help track changes in code and facilitate team collaboration.
+
+Continuous integration is the practice of frequently integrating code changes into a shared repository and automatically testing them.
+
+Unit testing involves writing test cases for individual components to ensure they work as expected.
+
+Software quality attributes include maintainability, scalability, reliability, and usability.
