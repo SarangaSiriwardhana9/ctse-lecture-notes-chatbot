@@ -1,9 +1,3 @@
-# Python virtual environment
-venv/
-ENV/
-env/
-.env/
-
 # Python bytecode
 __pycache__/
 *.py[cod]
@@ -12,55 +6,69 @@ __pycache__/
 .Python
 
 # Distribution / packaging
-dist/
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
 *.egg
 
-# Environment variable files (to avoid accidentally committing API keys)
+# Virtual environments
+venv/
+ENV/
+env/
 .env
-*.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# API key files
-*apikey*
-*api_key*
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-*.ipynb
-
-# Data files
-data/
-!data/.gitkeep
-
-# Vector DB and embeddings
-*.db
-*.sqlite
-*.pkl
-*.bin
-chroma/
-vector_store/
-
-# Test files
-.coverage
-htmlcov/
-.pytest_cache/
-
-# Log files
-*.log
-logs/
+.venv
 
 # IDE specific files
 .idea/
 .vscode/
 *.swp
 *.swo
+.project
+.pydevproject
+.settings
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Local development settings
+.env
+.env.local
+*.log
+
+# OS specific
 .DS_Store
 Thumbs.db
 
-# Local development settings
-local_settings.py
+# Project specific
+data/*
+!data/.gitkeep
+*.pkl
+embeddings/
+*.db
+chroma_db/
+.chroma/
+credentials.json
+token.json
+*.sqlite
+
+# Credentials and API keys
+*apikey*
+*credentials*
