@@ -1,38 +1,46 @@
 # CTSE Lecture Notes Chatbot
 
-A Question-Answering system for Current Trends in Software Engineering lecture notes, developed as part of Assignment 2 for SE4010 - Current Trends in Software Engineering, Semester 1, 2025.
-
-
+A question-answering system for Current Trends in Software Engineering lecture notes, developed as part of Assignment 2 for SE4010 - Current Trends in Software Engineering, Semester 1, 2025.
+ 
 ## Project Overview
 
-This project implements a chatbot that answers questions about CTSE lecture notes using Retrieval Augmented Generation (RAG). The system:
+This project implements a chatbot that can answer questions based on CTSE lecture notes using Retrieval Augmented Generation (RAG). The system:
 
 1. Loads lecture notes from text and PDF files  
-2. Splits them into semantically meaningful chunks  
+2. Splits them into manageable chunks  
 3. Creates vector embeddings using Sentence Transformers  
-4. Retrieves relevant content based on question similarity  
-5. Generates accurate answers using Google's Gemini API  
-6. Provides source citations for transparency  
+4. Retrieves relevant content when asked questions  
+5. Generates natural language answers using Google's Gemini API  
+
+## Repository
+
+GitHub Repository URL: [https://github.com/SarangaSiriwardhana9/ctse-lecture-notes-chatbot](https://github.com/SarangaSiriwardhana9/ctse-lecture-notes-chatbot)
+
+## Repository Structure
+
+- `chatbot.ipynb` - Main Jupyter Notebook implementation of the RAG system  
+- `app.py` - Streamlit web interface for the chatbot  
+- `data/` - Directory for storing lecture notes (add your .txt or .pdf files here)  
+- `.gitignore` - Configuration for Git to exclude unnecessary files  
 
 ## Features
 
-- **Multi-format Document Loading**: Imports lecture notes from both text and PDF files  
-- **Intelligent Text Chunking**: Splits documents with appropriate overlap to maintain context  
-- **Semantic Search**: Uses dense vector embeddings to find conceptually related content  
-- **Context-Aware Responses**: Generates answers grounded in the provided lecture materials  
-- **Source Attribution**: Shows which parts of the lecture notes were used for each answer  
-- **User-Friendly Interface**: Simple interactive chat experience in Jupyter or via Streamlit  
+- **Document Loading**: Imports lecture notes from text and PDF files  
+- **Text Processing**: Splits documents into manageable chunks  
+- **Semantic Search**: Uses embeddings to find relevant content  
+- **AI-Powered Responses**: Generates conversational answers using Google Gemini  
+- **Interactive Interface**: Simple Streamlit web interface and Jupyter Notebook  
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.8+  
 - Required libraries:
-  - sentence-transformers
-  - requests
-  - numpy
-  - scikit-learn
-  - PyPDF2
-  - streamlit (optional for UI)
+  - sentence-transformers  
+  - requests  
+  - numpy  
+  - scikit-learn  
+  - PyPDF2  
+  - streamlit (for web interface)  
 
 ## Installation
 
@@ -53,136 +61,81 @@ This project implements a chatbot that answers questions about CTSE lecture note
 
 3. Install required packages:
    ```bash
-   pip install -r requirements.txt
+   pip install requests sentence-transformers numpy scikit-learn PyPDF2 streamlit
    ```
 
 4. Add your lecture notes:
-   - Create a `data` folder in the project directory
-   - Add your lecture notes as text files (`.txt`) or PDFs (`.pdf`) in this folder
+
+   - Place your lecture notes (.txt or .pdf files) in the `data/` folder
 
 5. Set up your Google Gemini API key:
+
    - Get an API key from Google AI Studio  
-   - Add your API key to the environment variables or update it in the notebook
+   - Replace the placeholder API key in the code with your actual key  
 
 ## Usage
 
 ### Jupyter Notebook
-Open and run the chatbot.ipynb notebook:
+
+Run the Jupyter Notebook to explore the implementation details:
 ```bash
 jupyter notebook chatbot.ipynb
 ```
 
-### Command Line Interface
-Run the chatbot from the command line:
-```bash
-python chatbot.py
-```
+### Streamlit Interface
 
-### Streamlit Interface (Optional)
-Launch the Streamlit web interface:
+Launch the web interface:
 ```bash
 streamlit run app.py
 ```
 
 ## How It Works
 
-### RAG Architecture
+### Architecture Overview
 
 The system implements a Retrieval Augmented Generation (RAG) architecture:
 
-#### Document Processing:
-- Loads and parses text/PDF documents from the data folder  
-- Splits documents into smaller chunks (800 tokens with 150 token overlap)  
+- **Document Processing**:
+  - Loads text documents from the data folder  
+  - Splits documents into smaller chunks for efficient processing  
 
-#### Embedding Creation:
-- Uses Sentence Transformers (`all-MiniLM-L6-v2` model)  
-- Generates 384-dimensional vector embeddings for each text chunk  
-- Creates a vector store for efficient similarity search  
+- **Embedding Creation**:
+  - Converts each text chunk into vector embeddings  
+  - Embeddings capture semantic meaning of the text  
 
-#### Query Processing:
-- Converts user questions into the same embedding space  
-- Uses cosine similarity to find the most relevant document chunks  
-- Retrieves top-k chunks based on similarity scores  
+- **Retrieval**:
+  - Converts a question into an embedding  
+  - Finds chunks most similar to the question using cosine similarity  
 
-#### Answer Generation:
-- Constructs an instructional prompt incorporating retrieved contexts  
-- Sends the prompt to Google's Gemini API  
-- Specifies that answers must be based only on provided context  
-- Returns the generated answer with source attributions  
-
-## System Components
-
-- **Document Loader**: Handles different file formats and text extraction  
-- **Text Chunker**: Implements intelligent document splitting algorithms  
-- **Embedding Model**: Converts text to dense vector representations  
-- **Vector Store**: Enables efficient similarity search in the embedding space  
-- **Retriever**: Finds semantically relevant document chunks for each query  
-- **Prompt Template**: Structures context and instructions for the LLM  
-- **LLM Interface**: Manages API communication with Google Gemini  
-- **Response Formatter**: Presents answers with clear source attribution  
-
-## Performance Evaluation
-
-The system was evaluated using:
-
-- **Answer Relevance**: Manual assessment of response pertinence to questions  
-- **Source Accuracy**: Verification that answers cite appropriate lecture material  
-- **Response Time**: Measurement of end-to-end query processing time  
-- **Hallucination Rate**: Analysis of unfounded claims not present in source material  
-
-## Justification of LLM Choice
-
-Google Gemini was selected as the LLM for this project because:
-
-- **Context Handling**: Effectively processes multiple chunks of lecture content  
-- **Instruction Following**: Consistently adheres to constraints about using only provided context  
-- **Free Academic Tier**: Accessible API with reasonable free quota for student projects  
-- **Response Quality**: Generates well-structured, natural language explanations  
-- **Documentation**: Comprehensive API documentation and examples for developers  
+- **Answer Generation**:
+  - Provides retrieved chunks as context to the Gemini model  
+  - Prompts Gemini to generate an answer based solely on the provided context  
 
 ## Development Approach
 
-This project uses a modular, component-based approach to RAG implementation:
+This project uses a simple, modular approach to RAG implementation:
 
-- **Simplicity First**: Prioritizes clean, understandable code over complex optimizations  
-- **Functional Separation**: Organizes code by distinct RAG pipeline stages  
-- **Framework Independence**: Avoids excessive dependencies on specific ML frameworks  
-- **Extensibility**: Designed for easy modification and enhancement  
+- Design prioritizes simplicity and clarity over optimization  
+- Functions are separated based on their role in the RAG pipeline  
+- No complex frameworks are used to ensure transparency of implementation  
+- The modular structure makes it easy to modify or extend individual components  
 
-## Future Improvements
+## Justification of LLM Choice
 
-Potential enhancements for the system:
+Google Gemini was chosen as the LLM for this project because:
 
-- Multi-modal Processing: Add support for images, diagrams, and charts from lecture slides  
-- Document Format Expansion: Handle additional file types (DOCX, PPT, etc.)  
-- Conversation Memory: Implement short-term memory for follow-up questions  
-- Adaptive Chunking: Use semantic boundaries for more intelligent text splitting  
-- Performance Optimization: Implement caching and vector store persistence  
-- User Feedback Loop: Add mechanisms to improve responses based on user ratings  
-- Multi-course Support: Scale to handle materials from multiple courses  
+- Provides high-quality responses with strong contextual understanding  
+- API accessible with a free tier for academic projects  
+- Handles context-based responses well, making it suitable for RAG applications  
+- Documentation and support are robust for beginning developers  
+ 
+## References
 
-## Project Resources
-
-The complete implementation of the CTSE Lecture Notes Chatbot is available for review through the following resources:
-
-### GitHub Repository
-
-The full source code, including the Jupyter Notebook implementation, data processing modules, and documentation, is available in the public GitHub repository:
-
-Repository URL: [https://github.com/SarangaSiriwardhana9/ctse-lecture-notes-chatbot](https://github.com/SarangaSiriwardhana9/ctse-lecture-notes-chatbot)
-
-The repository contains:
-
-- `chatbot.ipynb`: The main Jupyter Notebook implementation  
-- `data/`: Sample lecture notes for demonstration  
-- `requirements.txt`: All required dependencies  
-- Documentation and license information  
-
-
-The demonstration provides a practical overview of how the RAG architecture effectively retrieves and generates responses based on the course lecture notes.
+- Google Generative AI Documentation  
+- RAG Tutorial from LangChain  
+- Sentence Transformers Documentation  
 
 ## License
 
-This project is created for educational purposes as part of a university assignment.
-
+This project is created for educational purposes as part of a university assignment.  
 Created for SE4010 - Current Trends in Software Engineering, Assignment 2 - AI/ML (Semester 1, 2025)
