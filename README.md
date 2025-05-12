@@ -1,39 +1,52 @@
 # CTSE Lecture Notes Chatbot
 
-A simple Question-Answering system for Current Trends in Software Engineering lecture notes, developed as part of Assignment 2 for SE4010 - Current Trends in Software Engineering, Semester 1, 2025.
-
+A question-answering system for Current Trends in Software Engineering lecture notes, developed as part of Assignment 2 for SE4010 - Current Trends in Software Engineering, Semester 1, 2025.
+ 
 ## Project Overview
 
 This project implements a chatbot that can answer questions based on CTSE lecture notes using Retrieval Augmented Generation (RAG). The system:
 
-1. Loads lecture notes from text files
-2. Splits them into manageable chunks
-3. Creates vector embeddings using Sentence Transformers
-4. Retrieves relevant content when asked questions
-5. Generates natural language answers using Google's Gemini API
+1. Loads lecture notes from text and PDF files  
+2. Splits them into manageable chunks  
+3. Creates vector embeddings using Sentence Transformers  
+4. Retrieves relevant content when asked questions  
+5. Generates natural language answers using Google's Gemini API  
+
+## Repository
+
+GitHub Repository URL: [https://github.com/SarangaSiriwardhana9/ctse-lecture-notes-chatbot](https://github.com/SarangaSiriwardhana9/ctse-lecture-notes-chatbot)
+
+## Repository Structure
+
+- `chatbot.ipynb` - Main Jupyter Notebook implementation of the RAG system  
+- `app.py` - Streamlit web interface for the chatbot  
+- `data/` - Directory for storing lecture notes (add your .txt or .pdf files here)  
+- `.gitignore` - Configuration for Git to exclude unnecessary files  
 
 ## Features
 
-- **Document Loading**: Imports lecture notes from text files
-- **Text Processing**: Splits documents into manageable chunks
-- **Semantic Search**: Uses embeddings to find relevant content
-- **AI-Powered Responses**: Generates conversational answers using Google Gemini
-- **Interactive Interface**: Simple command-line chat interface
+- **Document Loading**: Imports lecture notes from text and PDF files  
+- **Text Processing**: Splits documents into manageable chunks  
+- **Semantic Search**: Uses embeddings to find relevant content  
+- **AI-Powered Responses**: Generates conversational answers using Google Gemini  
+- **Interactive Interface**: Simple Streamlit web interface and Jupyter Notebook  
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.8+  
 - Required libraries:
-  - sentence-transformers
-  - requests
-  - numpy
-  - scikit-learn
+  - sentence-transformers  
+  - requests  
+  - numpy  
+  - scikit-learn  
+  - PyPDF2  
+  - streamlit (for web interface)  
 
 ## Installation
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/ctse-lecture-notes-chatbot.git
+   git clone https://github.com/SarangaSiriwardhana9/ctse-lecture-notes-chatbot.git
    cd ctse-lecture-notes-chatbot
    ```
 
@@ -48,26 +61,33 @@ This project implements a chatbot that can answer questions based on CTSE lectur
 
 3. Install required packages:
    ```bash
-   pip install requests sentence-transformers numpy scikit-learn
+   pip install requests sentence-transformers numpy scikit-learn PyPDF2 streamlit
    ```
 
 4. Add your lecture notes:
-   - Create a `data` folder in the project directory
-   - Add your lecture notes as text files (`.txt`) in this folder
+
+   - Place your lecture notes (.txt or .pdf files) in the `data/` folder
 
 5. Set up your Google Gemini API key:
-   - Get an API key from Google AI Studio
-   - Update the API key in the code
+
+   - Get an API key from Google AI Studio  
+   - Replace the placeholder API key in the code with your actual key  
 
 ## Usage
 
-Run the chatbot:
+### Jupyter Notebook
+
+Run the Jupyter Notebook to explore the implementation details:
 ```bash
-python chatbot.py
+jupyter notebook chatbot.ipynb
 ```
 
-- Ask questions about your lecture notes
-- Type `exit` to quit the application
+### Streamlit Interface
+
+Launch the web interface:
+```bash
+streamlit run app.py
+```
 
 ## How It Works
 
@@ -75,30 +95,21 @@ python chatbot.py
 
 The system implements a Retrieval Augmented Generation (RAG) architecture:
 
-**Document Processing**:
-- Loads text documents from the `data` folder
-- Splits documents into smaller chunks for efficient processing
+- **Document Processing**:
+  - Loads text documents from the data folder  
+  - Splits documents into smaller chunks for efficient processing  
 
-**Embedding Creation**:
-- Converts each text chunk into vector embeddings
-- Embeddings capture semantic meaning of the text
+- **Embedding Creation**:
+  - Converts each text chunk into vector embeddings  
+  - Embeddings capture semantic meaning of the text  
 
-**Retrieval**:
-- Converts a question into an embedding
-- Finds chunks most similar to the question using cosine similarity
+- **Retrieval**:
+  - Converts a question into an embedding  
+  - Finds chunks most similar to the question using cosine similarity  
 
-**Answer Generation**:
-- Provides retrieved chunks as context to the Gemini model
-- Prompts Gemini to generate an answer based solely on the provided context
-
-## Components
-
-- **Document Loader**: Imports text files and organizes their content  
-- **Text Chunker**: Splits large documents into manageable pieces  
-- **Embedding Model**: Converts text to vector representations  
-- **Retriever**: Finds relevant chunks based on question similarity  
-- **LLM Interface**: Connects to Google Gemini API for answer generation  
-- **Chat Interface**: Provides a simple command-line interface for interaction  
+- **Answer Generation**:
+  - Provides retrieved chunks as context to the Gemini model  
+  - Prompts Gemini to generate an answer based solely on the provided context  
 
 ## Development Approach
 
@@ -117,17 +128,7 @@ Google Gemini was chosen as the LLM for this project because:
 - API accessible with a free tier for academic projects  
 - Handles context-based responses well, making it suitable for RAG applications  
 - Documentation and support are robust for beginning developers  
-
-## Future Improvements
-
-Potential enhancements for the system:
-
-- Implement a web-based user interface  
-- Add support for multiple document formats (PDF, DOCX)  
-- Improve chunking strategy with semantic-aware splitting  
-- Add conversation history for more natural interactions  
-- Implement evaluation metrics to measure answer quality  
-
+ 
 ## References
 
 - Google Generative AI Documentation  
@@ -136,6 +137,5 @@ Potential enhancements for the system:
 
 ## License
 
-This project is created for educational purposes as part of a university assignment.
-
+This project is created for educational purposes as part of a university assignment.  
 Created for SE4010 - Current Trends in Software Engineering, Assignment 2 - AI/ML (Semester 1, 2025)
